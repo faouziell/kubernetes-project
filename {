@@ -1,0 +1,213 @@
+Script started on 2023-06-10 22:45:31+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="80" LINES="24"]
+                    commit_id = readFile('.git/commit-id').trim()
+                }
+            }
+        }
+
+        stage ('Image Build') {
+            steps {
+                echo 'Building....'
+                sh 'scp -r -i $(minikube ssh-key) ./*  docker@$(minikube ip):-/'
+                sh "minikube ssh 'docker build -t webapp:${commit_id} ./'"
+                echo 'build complete'
+            }
+        }
+
+        stage('Deploy'){
+            steps {
+                echo 'Deploying to kubernets'
+                sh "sed -i -r 's|richardchesterwood/k8s-fleetman-angular:release2|webapp:${commit_id}' ./manifests/deployments.yaml"
+                sh 'kubectl get all'
+                sh ' kubectl apply -f -/manifests/ '
+                sh ' kubectl get all'
+                echo 'deployment complete'
+            }
+                
+            }
+        }
+    }
+}]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                     commit_id = readFile('.git/commit-id').trim()
+bash: syntax error near unexpected token `('
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 }
+bash: syntax error near unexpected token `}'
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$             }
+bash: syntax error near unexpected token `}'
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$         }
+bash: syntax error near unexpected token `}'
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ 
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$         stage ('Image Build') {
+bash: syntax error near unexpected token `'Image Build''
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$             steps {
+
+Command 'steps' not found, did you mean:
+
+  command 'step' from snap step (23.04.1)
+  command 'step' from deb step (4:19.12.3-0ubuntu1)
+
+See 'snap info <snapname>' for additional versions.
+
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 echo 'Building....'
+Building....
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 sh 'scp -r -i $(minikube ssh-key) ./*  docker@$(minikube ip):-/'
+sh: 0: Can't open scp -r -i $(minikube ssh-key) ./*  docker@$(minikube ip):-/
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 sh "minikube ssh 'docker build -t webapp:${commit_id} ./'"
+sh: 0: Can't open minikube ssh 'docker build -t webapp: ./'
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 echo 'build complete'
+build complete
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$             }
+bash: syntax error near unexpected token `}'
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$         }
+bash: syntax error near unexpected token `}'
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ 
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$         stage('Deploy'){
+bash: syntax error near unexpected token `'Deploy''
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$             steps {
+
+Command 'steps' not found, did you mean:
+
+  command 'step' from snap step (23.04.1)
+  command 'step' from deb step (4:19.12.3-0ubuntu1)
+
+See 'snap info <snapname>' for additional versions.
+
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 echo 'Deploying to kubernets'
+Deploying to kubernets
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 sh "sed -i -r 's|richardchesterwood/k8s-fleetman-angular:release2|webapp:${commit_id}' ./manifests/deployments.yaml"
+sh: 0: Can't open sed -i -r 's|richardchesterwood/k8s-fleetman-angular:release2|webapp:' ./manifests/deployments.yaml
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 sh 'kubectl get all'
+sh: 0: Can't open kubectl get all
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 sh ' kubectl apply -f -/manifests/ '
+sh: 0: Can't open  kubectl apply -f -/manifests/ 
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 sh ' kubectl get all'
+sh: 0: Can't open  kubectl get all
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 echo 'deployment complete'
+deployment complete
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$             }
+bash: syntax error near unexpected token `}'
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$                 
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$             }
+bash: syntax error near unexpected token `}'
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$         }
+bash: syntax error near unexpected token `}'
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$     }
+bash: syntax error near unexpected token `}'
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ }^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ ^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ ^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ ^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ ^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git add[K[K[Kinit
+Reinitialized existing Git repository in /home/minikube-k8s/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular/.git/
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git init[K[K[K[Kadd
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ ^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ ^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ ^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ ^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ ^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git commit –m “added jenkinsfile”
+error: pathspec '–m' did not match any file(s) known to git
+error: pathspec '“added' did not match any file(s) known to git
+error: pathspec 'jenkinsfile”' did not match any file(s) known to git
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git commit -m "added jenkinsfile"
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'minikube-k8s@minikube-k8s.(none)')
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git config --global user.email "you@example.com" [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P.com"
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P.com"[1P.com"[1P.com"[1P.com"[1P.com"[1P.com"g.com"m.com"a.com"i.com"l.com"[1P@gmail.com"[1P@gmail.com"[1P@gmail.com"f@gmail.com"a@gmail.com"o@gmail.com"u@gmail.com"z@gmail.com" [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ci@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C@gmail.com" [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P@gmail.com"
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P@gmail.com"[1P@gmail.com"w@gmail.com"z@gmail.com"i@gmail.com" [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C.@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ce@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cl@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cl@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ce@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cu@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cc@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ch@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git config --global user.email "fawzi.elleuch@gmail.com"^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git config --global user.name "Your Name"faouzie ll[C[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[C[C[1P[1Pemail "fawzi.elleuch@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[9PnameYour Name"
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kgit config --global user.name "Your Name"[C[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"f"a"o"u"z"i"e"l"l"[C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git config --global user.name "faouziell"email "fawzi.elleuch@gmail.com"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[15Pmmit -m "added jenkinsfile"
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31m.dockerignore[m
+	[31m.editorconfig[m
+	[31m.gitignore[m
+	[31mDockerfile[m
+	[31mJenkinsfile[m
+	[31mREADME.md[m
+	[31mangular.json[m
+	[31me2e/[m
+	[31mkarma.conf.js[m
+	[31mmanifests/[m
+	[31mnginx.conf[m
+	[31mpackage-lock.json[m
+	[31mpackage.json[m
+	[31mprotractor.conf.js[m
+	[31mtsconfig.json[m
+	[31mtslint.json[m
+	[31m{[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ Git remote add origin “link of your github repo” [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C"link of your github repo” [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C" [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P"
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"https://github.com/faouziell/kubernetes-project"
+
+Command 'Git' not found, did you mean:
+
+  command 'git' from deb git (1:2.25.1-1ubuntu3.11)
+  command 'vit' from deb vit (2.0.0-1)
+  command 'wit' from deb wit (3.01a-2)
+
+Try: sudo apt install <deb name>
+
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ Git remote add origin "https://github.com/faouziell/kubernetes-project"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cit remote add origin "https://github.com/faouziel[C[1P/kubernetes-project"[A[C[C[C[C[C[C[C[C[C[Cgit remote add origin "https://github.com/faouzie[Cl/kubernetes-project"[A[C[C[C[C[C[C[C[C[C[C
+
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git push[K[K[K[Kpush origin master
+error: src refspec master does not match any
+[31merror: failed to push some refs to 'https://github.com/faouziell/kubernetes-project'
+[m]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ ^C
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git branch master
+fatal: Not a valid object name: 'master'.
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git checkout master
+error: pathspec 'master' did not match any file(s) known to git
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git branch -a
+[?1h=[K[?1l>]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git branch -a
+[?1h=[K[?1l>]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git branch master
+fatal: Not a valid object name: 'master'.
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git checkout master
+error: pathspec 'master' did not match any file(s) known to git
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git branch master
+fatal: Not a valid object name: 'master'.
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git branch master[2@checkout[C[C[C[C[C[C[C[2Pbranch[C[C[C[C[C[C[C[4P-acheckout master[2Pbranch[C[C[C[C[C[C[C[5@push origin[C[C[C[C[C[C[Cremote add origin "https://github.com/faouziell/kubernetes-project"[A[C[C[C[C[C[C[C[C[CG
+[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A[C[C[C[C[C[C[C[C[Cg
+[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[A[C[C[C[C[C[C[C[C[C[C[C[C[C[26Ppush origin master
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cremote add origin "https://github.com/faouziell/kubernetes-project"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C" [K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P"
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"[1P"https://github.com/faouziell/kubernetes-project.git"
+fatal: remote origin already exists.
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git remote add origin "https://github.com/faouziell/kubernetes-project.git"[A[C[C[C[C[C[C[C[C[Cbranch master[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+fatal: Not a valid object name: 'master'.
+]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[01;32mminikube-k8s@minikube-k8s[00m:[01;34m~/project/k8s-fleetman/microservice-source-code/release2/k8s-fleetman-webapp-angular[00m$ git branch masterremote add origin "https://github.com/faouziell/kubernetes-project.git"[A[C[C[C[C[C[C[C[C[Cbranch master[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[2@checkout[C[C[C[C[C[C[C[2Pbranch[C[C[C[C[C[C[C[4P-acheckout master[6Pbranch -a
+[?1h=[K[?1l>]0;minikube-k8s@minikube-k8s: ~/project/k8s-fleetman/microservice-source-
